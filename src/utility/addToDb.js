@@ -17,7 +17,30 @@ const addToStoredReadList = (id) => {
         storedList.push(id);
         const storedListStr = JSON.stringify(storedList);
         localStorage.setItem("read-list", storedListStr);
-    }
-}
+    };
+};
 
-export { addToStoredReadList };
+const getStoredWishList = () => {
+    const storedListInLocalStorage = localStorage.getItem("wish-list");
+
+    if(storedListInLocalStorage) {
+        const storedList = JSON.parse(storedListInLocalStorage);
+        return storedList;
+    } else {
+        return [];
+    }
+};
+
+const addToStoredWishList = (id) => {
+    const storedList = getStoredWishList();
+    
+    if(storedList.includes(id)) {
+        console.log("this is already included");
+    } else {
+        storedList.push(id);
+        const storedListStr = JSON.stringify(storedList);
+        localStorage.setItem("wish-list", storedListStr);
+    };
+};
+
+export { addToStoredReadList, addToStoredWishList };
